@@ -12,9 +12,9 @@
           "interestRate": 16,
           "returnType": "fixed",
           "graduatedRates": {
-            "year1": 17,
-            "year2": 17,
-            "year3": 17
+            "year1": 16,
+            "year2": 16,
+            "year3": 16
           },
           "type": "monthly",
           "minAmount": 1000,
@@ -80,9 +80,9 @@
           "interestRate": 16,
           "returnType": "fixed",
           "graduatedRates": {
-            "year1": 17,
-            "year2": 17,
-            "year3": 17
+            "year1": 16,
+            "year2": 16,
+            "year3": 16
           },
           "type": "monthly",
           "minAmount": 1000,
@@ -119,7 +119,7 @@
           "id": "cert-1765592547890",
           "name": "الشهادة البلاتينيه ذات العائد المتدرج السنوي",
           "duration": 36,
-          "interestRate": 23,
+          "interestRate": 22,
           "returnType": "graduated",
           "graduatedRates": {
             "year1": 22,
