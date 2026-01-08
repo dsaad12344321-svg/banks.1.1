@@ -3,13 +3,13 @@
     {
       "id": "banque-misr",
       "name": "بنك مصر",
-      "logo": "/misr.svg",
+      "logo": "/misr.png",
       "certificates": [
         {
           "id": "cert-1765597439987",
           "name": "شھادة القمة",
           "duration": 36,
-          "interestRate": 17,
+          "interestRate": 16,
           "returnType": "fixed",
           "graduatedRates": {
             "year1": 17,
@@ -18,7 +18,7 @@
           },
           "type": "monthly",
           "minAmount": 1000,
-          "description": "شهادة ادخار لمدة 3 سنوات بعائد ثابت 17%",
+          "description": "شهادة ادخار لمدة 3 سنوات بعائد ثابت 16%",
           "features": [
             "عائد شهرى",
             "3 سنوات",
@@ -28,14 +28,14 @@
         },
         {
           "id": "cert-1765597128970",
-          "name": "شهادة ابن مصر الثلاثية المتناقصة",
+          "name": "شهادة ابن مصر الثلاثية المتناقصة عائد شهرى",
           "duration": 36,
           "interestRate": 20.5,
           "returnType": "graduated",
           "graduatedRates": {
             "year1": 20.5,
-            "year2": 17,
-            "year3": 13.5
+            "year2": 16.25,
+            "year3": 12.25
           },
           "type": "monthly",
           "minAmount": 1000,
@@ -43,8 +43,27 @@
           "features": [
             "عائد شهرى",
             "3 سنوات",
-            "عائد متدرج",
-            "أعلى عائد في السوق"
+            "عائد متدرج"
+          ]
+        },
+        {
+          "id": "cert-1767237416478",
+          "name": "شهادة ابن مصر الثلاثية المتناقصة عائد سنوى",
+          "duration": 36,
+          "interestRate": 15,
+          "returnType": "graduated",
+          "graduatedRates": {
+            "year1": 22,
+            "year2": 17.5,
+            "year3": 13.25
+          },
+          "type": "annual",
+          "minAmount": 1000,
+          "description": "شهادة ادخار لمدة 3 سنوات بعائد متناقص تبدأ من 22% في السنة الأولى",
+          "features": [
+            "فائدة سنوية",
+            "3سنوات",
+            "عائدمتناقص"
           ]
         }
       ]
@@ -52,13 +71,13 @@
     {
       "id": "banque-du-caire",
       "name": "البنك الأهلي المصري",
-      "logo": "/elahly.svg",
+      "logo": "/elahly.png",
       "certificates": [
         {
           "id": "nbe-3-year",
           "name": "الشهادة البلاتينيه 3 سنوات",
           "duration": 36,
-          "interestRate": 17,
+          "interestRate": 16,
           "returnType": "fixed",
           "graduatedRates": {
             "year1": 17,
@@ -67,7 +86,7 @@
           },
           "type": "monthly",
           "minAmount": 1000,
-          "description": "شهادة ادخار بلاتينية لمدة 3 سنوات بعائد ثابت 17%",
+          "description": "شهادة ادخار بلاتينية لمدة 3 سنوات بعائد ثابت 16%",
           "features": [
             "عائد ثابت",
             "3 سنوات",
@@ -83,8 +102,8 @@
           "returnType": "graduated",
           "graduatedRates": {
             "year1": 21,
-            "year2": 16.75,
-            "year3": 13.5
+            "year2": 16.25,
+            "year3": 12
           },
           "type": "monthly",
           "minAmount": 1000,
@@ -103,13 +122,13 @@
           "interestRate": 23,
           "returnType": "graduated",
           "graduatedRates": {
-            "year1": 23,
-            "year2": 18.5,
-            "year3": 14
+            "year1": 22,
+            "year2": 17.5,
+            "year3": 13
           },
           "type": "annual",
           "minAmount": 1000,
-          "description": "شهادة بلاتينية لمدة 3 سنوات بعائد متدرج سنوياً يبدأ من 23% في السنة الأولى",
+          "description": "شهادة بلاتينية لمدة 3 سنوات بعائد متدرج سنوياً يبدأ من 22% في السنة الأولى",
           "features": [
             "عائد سنوى",
             "عائد متدرج",
