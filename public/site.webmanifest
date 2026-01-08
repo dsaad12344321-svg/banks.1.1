@@ -1,0 +1,90 @@
+{
+  "name": "شهادات الودائع البنكية المصرية",
+  "short_name": "الشهادات البنكية",
+  "description": "احسب أرباح شهادات الادخار المصرية بدقة. مقارنة بين أفضل البنوك المصرية وأسعار الفائدة.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["finance", "business", "education"],
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "حاسبة الشهادات البنكية المصرية على سطح المكتب"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "حاسبة الشهادات البنكية المصرية على الموبايل"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "حاسبة الأرباح",
+      "short_name": "الحاسبة",
+      "description": "فتح حاسبة أرباح الشهادات مباشرة",
+      "url": "/#calculator",
+      "icons": [
+        {
+          "src": "/icon-calculator.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "قائمة البنوك",
+      "short_name": "البنوك",
+      "description": "عرض قائمة البنوك المصرية",
+      "url": "/#banks",
+      "icons": [
+        {
+          "src": "/icon-banks.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}
