@@ -45,7 +45,7 @@ export default function CalculatorClient({ banks, loading, error }: { banks: Ban
 
   const calculateProfit = () => {
       // Open smart link in new window
-        const smartLink = 'https://www.effectivegatecpm.com/btjuup0z?key=8a3cadabb062a1164902d7c7427dfedc';
+        const smartLink = https://www.effectivegatecpm.com/kcizzjmh1?key=1f3876afe83612bbf1921c9f11ab2695
         window.open(smartLink, '_blank', 'noopener,noreferrer');
     if (!selectedBank || !selectedCertificate || !amount) return;
 
