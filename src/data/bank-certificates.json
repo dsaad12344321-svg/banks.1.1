@@ -69,13 +69,13 @@
       ]
     },
     {
-      "id": "banque-du-caire",
+      "id": "National bank of Egypt",
       "name": "البنك الأهلي المصري",
       "logo": "/elahly.png",
       "certificates": [
         {
-  "id": "nbe-1-year-14-monthly",
-  "name": "شهادة ادخار لمدة سنة – عائد شهري 14%",
+  "id": "cert-1767235786478",
+  "name": "شهادة استثمار ب",
   "duration": 12,
   "interestRate": 14,
   "returnType": "fixed",
