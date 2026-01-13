@@ -74,6 +74,28 @@
       "logo": "/elahly.png",
       "certificates": [
         {
+  "id": "nbe-1-year-14-monthly",
+  "name": "شهادة ادخار لمدة سنة – عائد شهري 14%",
+  "duration": 12,
+  "interestRate": 14,
+  "returnType": "fixed",
+  "graduatedRates": {
+    "year1": 14,
+    "year2": 14,
+    "year3": 14
+  },
+  "type": "monthly",
+  "minAmount": 1000,
+  "description": "شهادة ادخار من البنك الأهلي المصري لمدة سنة بعائد ثابت 14% يُصرف شهرياً",
+  "features": [
+    "عائد شهري",
+    "مدة سنة واحدة",
+    "عائد ثابت 14%",
+    "من البنك الأهلي المصري",
+    "حد أدنى 1000 جنيه"
+  ]
+},
+        {
           "id": "nbe-3-year",
           "name": "الشهادة البلاتينيه 3 سنوات",
           "duration": 36,
