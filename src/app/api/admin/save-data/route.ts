@@ -1,83 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, readFile } from 'fs/promises';
-import path from 'path';
+import { kv } from '@vercel/kv';
+
+const KEY = 'bank-certificates';
 
 export async function POST(request: NextRequest) {
   try {
     const { banks } = await request.json();
 
-    // Validate the data structure
     if (!Array.isArray(banks)) {
       return NextResponse.json(
         { error: 'Invalid data format' },
-        { 
-          status: 400,
-          headers: {
-            'Cache-Control': 'no-cache',
-            'Access-Control-Allow-Origin': '*',
-          }
-        }
+        { status: 400 }
       );
     }
 
-    // File path
-    const filePath = path.join(process.cwd(), 'src', 'data', 'bank-certificates.json');
-    
-    // Write to JSON file
-    await writeFile(filePath, JSON.stringify({ banks }, null, 2), 'utf8');
+    await kv.set(KEY, { banks });
 
     return NextResponse.json(
       { success: true, message: 'Data saved successfully' },
-      { 
+      {
         status: 200,
         headers: {
           'Cache-Control': 'no-cache',
           'Access-Control-Allow-Origin': '*',
-        }
+        },
       }
     );
   } catch (error) {
     console.error('Error saving bank data:', error);
     return NextResponse.json(
       { error: 'Failed to save data' },
-      { 
-        status: 500,
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Access-Control-Allow-Origin': '*',
-        }
-      }
+      { status: 500 }
     );
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    // File path
-    const filePath = path.join(process.cwd(), 'src', 'data', 'bank-certificates.json');
-    
-    // Read the file
-    const fileContents = await readFile(filePath, 'utf8');
-    const data = JSON.parse(fileContents);
+    const data = await kv.get(KEY);
 
-    return NextResponse.json(data, { 
+    return NextResponse.json(data ?? { banks: [] }, {
       status: 200,
       headers: {
         'Cache-Control': 'public, max-age=300',
         'Access-Control-Allow-Origin': '*',
-      }
+      },
     });
   } catch (error) {
     console.error('Error reading bank data:', error);
     return NextResponse.json(
       { error: 'Failed to read data' },
-      { 
-        status: 500,
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Access-Control-Allow-Origin': '*',
-        }
-      }
+      { status: 500 }
     );
   }
 }
