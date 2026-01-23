@@ -53,7 +53,7 @@ export const metadata = generateSEOMetadata({
 
 async function getBankData() {
   try {
-    const response = await fetch('https://banks-1-1-hafh-p14v20igj-dsaads-projects-a662f52f.vercel.app/api/bank-data');
+    const response = await fetch('http://localhost:3000/api/bank-data');
     const data = await response.json();
     return { banks: data.banks || [], loading: false, error: '' };
   } catch (error) {
