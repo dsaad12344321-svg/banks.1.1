@@ -74,27 +74,47 @@
       "logo": "/elahly.png",
       "certificates": [
         {
-  "id": "cert-1767235786478",
-  "name": "شهادة استثمار ب",
-  "duration": 12,
-  "interestRate": 14,
-  "returnType": "fixed",
-  "graduatedRates": {
-    "year1": 14,
-    "year2": 14,
-    "year3": 14
-  },
-  "type": "monthly",
-  "minAmount": 1000,
-  "description": "شهادة ادخار من البنك الأهلي المصري لمدة سنة بعائد ثابت 14% يُصرف شهرياً",
-  "features": [
-    "عائد شهري",
-    "مدة سنة واحدة",
-    "عائد ثابت 14%",
-    "من البنك الأهلي المصري",
-    "حد أدنى 1000 جنيه"
-  ]
-},
+          "id": "cert-1767235786478",
+          "name": "شهادة استثمار ب",
+          "duration": 12,
+          "interestRate": 14,
+          "returnType": "fixed",
+          "graduatedRates": {
+            "year1": 14,
+            "year2": 14,
+            "year3": 14
+          },
+          "type": "monthly",
+          "minAmount": 1000,
+          "description": "شهادة ادخار من البنك الأهلي المصري لمدة سنة بعائد ثابت 14% يُصرف شهرياً",
+          "features": [
+            "عائد شهري",
+            "مدة سنة واحدة",
+            "عائد ثابت 14%",
+            "من البنك الأهلي المصري",
+            "حد أدنى 1000 جنيه"
+          ]
+        },
+        {
+          "id": "cert-1768000000000",
+          "name": "شهادة استثمار ب",
+          "duration": 36,
+          "interestRate": 15,
+          "returnType": "fixed",
+          "graduatedRates": {
+            "year1": 15,
+            "year2": 15,
+            "year3": 15
+          },
+          "type": "quarterly",
+          "minAmount": 1000,
+          "description": "شهادة استثمار ب بعائد ربع سنوى 15%",
+          "features": [
+            "شهادة 3 سنوات",
+            "عائد ربع سنوى",
+            "عائد ثابت"
+          ]
+        },
         {
           "id": "nbe-3-year",
           "name": "الشهادة البلاتينيه 3 سنوات",
