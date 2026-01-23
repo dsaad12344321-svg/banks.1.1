@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import CalculatorClient from '@/components/calculator-client';
 import BanksDisplay from '@/components/banks-display';
@@ -155,6 +156,10 @@ export default async function Home() {
 
   return (
     <>
+      <Script
+        src="https://pl28546877.effectivegatecpm.com/0e/e1/24/0ee124e505ca3db3f2cc6e8463c09282.js"
+        strategy="afterInteractive"
+      />      
       {/* Structured Data */}
       <script
         type="application/ld+json"
