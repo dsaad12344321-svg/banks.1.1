@@ -98,7 +98,7 @@ export default function CalculatorClient({ banks, loading, error }: { banks: Ban
   const reset = () => {
     setSelectedBank('');
     setSelectedCertificate('');
-    setAmount('10000');
+    setAmount('100000');
     setResult(null);
   };
 
