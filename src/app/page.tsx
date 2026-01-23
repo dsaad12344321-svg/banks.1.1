@@ -3,8 +3,20 @@ import CalculatorClient from '@/components/calculator-client';
 import BanksDisplay from '@/components/banks-display';
 import FooterClient from '@/components/footer-client';
 import FAQAccordion from '@/components/faq-accordion';
-import { generateSEOMetadata, generateBankCalculatorStructuredData, generateFAQStructuredData, generateBreadcrumbStructuredData, SITE_URL } from '@/lib/seo';
+import {
+  generateSEOMetadata,
+  generateBankCalculatorStructuredData,
+  generateFAQStructuredData,
+  generateBreadcrumbStructuredData,
+  SITE_URL,
+} from '@/lib/seo';
 import Image from 'next/image';
+import { readFile } from 'fs/promises';
+import path from 'path';
+
+/* =========================
+   Types
+========================= */
 
 interface Certificate {
   id: string;
@@ -30,9 +42,14 @@ interface Bank {
   certificates: Certificate[];
 }
 
+/* =========================
+   SEO Metadata
+========================= */
+
 export const metadata = generateSEOMetadata({
   title: 'حاسبة شهادات الودائع البنكية المصرية',
-  description: 'احسب أرباح شهادات الادخار المصرية بدقة. مقارنة بين أفضل البنوك المصرية وأسعار الفائدة للشهادات الثابتة والمتغيرة والمتدرجة.',
+  description:
+    'احسب أرباح شهادات الادخار المصرية بدقة. مقارنة بين أفضل البنوك المصرية وأسعار الفائدة للشهادات الثابتة والمتغيرة والمتدرجة.',
   keywords: [
     'حاسبة الشهادات البنكية',
     'حساب أرباح الشهادات',
@@ -44,60 +61,94 @@ export const metadata = generateSEOMetadata({
     'أفضل عائد استثماري',
     'حساب الربح الشهري',
     'شهادات البنك الأهلي',
-    'شهادات بنك مصر'
-  
+    'شهادات بنك مصر',
   ],
   ogType: 'website',
   canonical: SITE_URL,
 });
 
-async function getBankData() {
+/* =========================
+   Server Data Loader
+========================= */
+
+async function getBankData(): Promise<{
+  banks: Bank[];
+  loading: boolean;
+  error: string;
+}> {
   try {
-    const response = await fetch('/api/bank-data');
-    const data = await response.json();
-    return { banks: data.banks || [], loading: false, error: '' };
+    const filePath = path.join(
+      process.cwd(),
+      'src',
+      'data',
+      'bank-certificates.json'
+    );
+
+    const fileContents = await readFile(filePath, 'utf8');
+    const data = JSON.parse(fileContents);
+
+    return {
+      banks: data.banks || [],
+      loading: false,
+      error: '',
+    };
   } catch (error) {
-    return { 
-      banks: [], 
-      loading: false, 
-      error: `فشل في تحميل بيانات البنوك: ${error instanceof Error ? error.message : 'Unknown error'}` 
+    console.error('Failed to load bank data:', error);
+
+    return {
+      banks: [],
+      loading: false,
+      error: 'فشل في تحميل بيانات البنوك',
     };
   }
 }
 
+/* =========================
+   Static Data
+========================= */
+
 const faqs = [
   {
     question: 'ما هي أفضل شهادة ادخار في البنوك المصرية لعام 2026؟',
-    answer: ' أفضل شهادة ادخار تعتمد على احتياجاتك ومبلغ الاستثمار. الشهادة الثابتة هي الخيار الأمثل حالياً حيث توفر عائداً ثابتا مع مرور الوقت',
-    visible: false
+    answer:
+      'أفضل شهادة ادخار تعتمد على احتياجاتك ومبلغ الاستثمار. الشهادة الثابتة هي الخيار الأمثل حالياً حيث توفر عائداً ثابتاً مع مرور الوقت.',
+    visible: false,
   },
   {
     question: 'كيف أحسب أرباح شهادة الادخار؟',
-    answer: 'يمكنك حساب أرباح شهادة الادخار بضرب مبلغ الاستثمار في نسبة الفائدة السنوية، ثم ضرب الناتج في عدد سنوات الاستثمار. حاسبتنا تقوم بهذا الحساب تلقائياً.',
-    visible: false
+    answer:
+      'يمكنك حساب أرباح شهادة الادخار بضرب مبلغ الاستثمار في نسبة الفائدة السنوية، ثم ضرب الناتج في عدد سنوات الاستثمار. حاسبتنا تقوم بهذا الحساب تلقائياً.',
+    visible: false,
   },
   {
     question: 'ما الفرق بين الشهادة الثابتة والمتغيرة والمتدرجة؟',
-    answer: 'الشهادة الثابتة لها فائدة ثابتة طوال فترة الاستثمار، والمتغيرة تتغير حسب سياسات البنك، والمتدرجة تقل الفائدة مع مرور الوقت (سنة بعد سنة). الشهادة الثابتة توفر استقرار في العائد، بينما المتدرجة توفر عائد مرتفع في البداية.',
-    visible: false
+    answer:
+      'الشهادة الثابتة لها فائدة ثابتة طوال فترة الاستثمار، والمتغيرة تتغير حسب سياسات البنك، والمتدرجة تقل الفائدة مع مرور الوقت سنة بعد سنة.',
+    visible: false,
   },
   {
     question: 'ما هو الحد الأدنى لشراء شهادة الادخار؟',
-    answer: 'الحد الأدنى يختلف من بنك لآخر وشهادة لأخرى، لكنه يبدأ عادة من 500 جنيه مصري للشهادات الصغيرة. بعض البنوك تقدم شهادات تبدأ من 1,000 جنيه أو حتى 5,000 جنيه للحد الأدنى، مع إمكانية إضافة مبالغ أكبر.',
-    visible: false
+    answer:
+      'الحد الأدنى يختلف من بنك لآخر، لكنه يبدأ عادة من 500 جنيه مصري، وبعض البنوك تبدأ من 1,000 أو 5,000 جنيه.',
+    visible: false,
   },
   {
     question: 'متى يتم صرف أرباح الشهادات البنكية؟',
-    answer: 'يتم صرف الأرباح حسب نوع الشهادة: شهرياً، ربع سنوي، أو سنوياً. الشهادات السنوية عادة ما توفر عائداً أعلى.',
-    visible: false
-  }
+    answer:
+      'يتم صرف الأرباح شهرياً أو ربع سنوي أو سنوياً حسب نوع الشهادة.',
+    visible: false,
+  },
 ];
 
 const breadcrumbItems = [
   { name: 'الرئيسية', url: SITE_URL },
   { name: 'حاسبة الشهادات', url: SITE_URL },
-  { name: 'البنوك المصرية', url: `${SITE_URL}#banks` }
+  { name: 'البنوك المصرية', url: `${SITE_URL}#banks` },
 ];
+
+/* =========================
+   Page Component
+========================= */
 
 export default async function Home() {
   const { banks, loading, error } = await getBankData();
@@ -109,18 +160,22 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={generateBankCalculatorStructuredData()}
       />
-      
+
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateFAQStructuredData(faqs.filter(faq => !faq.visible))}
+        dangerouslySetInnerHTML={generateFAQStructuredData(
+          faqs.filter((faq) => !faq.visible)
+        )}
       />
-      
+
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateBreadcrumbStructuredData(breadcrumbItems)}
+        dangerouslySetInnerHTML={generateBreadcrumbStructuredData(
+          breadcrumbItems
+        )}
       />
-      
-      {/* Bank structured data */}
+
+      {/* Bank Structured Data */}
       {banks.map((bank) => (
         <script
           key={bank.id}
@@ -130,7 +185,8 @@ export default async function Home() {
               '@context': 'https://schema.org',
               '@type': 'BankOrCreditUnion',
               name: bank.name,
-              description: `بنك مصري يقدم شهادات ادخار متنوعة بأفضل أسعار الفائدة`,
+              description:
+                'بنك مصري يقدم شهادات ادخار متنوعة بأفضل أسعار الفائدة',
               url: `${SITE_URL}#bank-${bank.id}`,
               logo: bank.logo,
               hasOfferCatalog: {
@@ -146,8 +202,12 @@ export default async function Home() {
                     price: cert.minAmount,
                     priceCurrency: 'EGP',
                   },
-                  category: cert.returnType === 'graduated' ? 'شهادة متدرجة' : 
-                            cert.returnType === 'variable' ? 'شهادة متغيرة' : 'شهادة ثابتة',
+                  category:
+                    cert.returnType === 'graduated'
+                      ? 'شهادة متدرجة'
+                      : cert.returnType === 'variable'
+                      ? 'شهادة متغيرة'
+                      : 'شهادة ثابتة',
                 })),
               },
             }),
@@ -160,45 +220,57 @@ export default async function Home() {
           {/* Header */}
           <header className="text-center mb-8 pt-8">
             <div className="flex justify-center mb-4">
-              <Image src='/logo.png' width={100} height={100} alt='daleelak elbankey logo'/>  
+              <Image
+                src="/logo.png"
+                width={100}
+                height={100}
+                alt="daleelak elbankey logo"
+              />
             </div>
-            
-            
+
             <h1 className="text-4xl font-bold text-foreground mb-2">
-               شهادات وودائع البنوك المصرية
+              شهادات وودائع البنوك المصرية
             </h1>
             <p className="text-muted-foreground text-lg">
               استكشف أفضل شهادات الادخار واحسب أرباحك بسهولة
             </p>
           </header>
 
-          {/* Banks Grid */}
+          {/* Banks */}
           <section id="banks" className="mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
               قائمة البنوك
             </h2>
-            
-            <BanksDisplay banks={banks} loading={loading} error={error} />
+
+            <BanksDisplay
+              banks={banks}
+              loading={loading}
+              error={error}
+            />
           </section>
 
-          {/* Calculator Section */}
+          {/* Calculator */}
           <section className="mb-12">
             <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
-                <CardTitle className="flex items-center justify-center gap-2 text-2xl">
+                <CardTitle className="text-2xl">
                   حاسبة الأرباح
                 </CardTitle>
                 <CardDescription>
                   احسب أرباحك من شهادات الادخار البنكية
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <CalculatorClient banks={banks} loading={loading} error={error} />
+              <CardContent>
+                <CalculatorClient
+                  banks={banks}
+                  loading={loading}
+                  error={error}
+                />
               </CardContent>
             </Card>
           </section>
 
-          {/* FAQ Section */}
+          {/* FAQ */}
           <section className="mb-12">
             <FAQAccordion faqs={faqs} />
           </section>
