@@ -156,10 +156,10 @@ export default async function Home() {
 
   return (
     <>
-      <Script
-        src="https://pl28546877.effectivegatecpm.com/0e/e1/24/0ee124e505ca3db3f2cc6e8463c09282.js"
+      <Script src="https://pl28554239.effectivegatecpm.com/2e/e3/0f/2ee30f414739c4b678668d5dd9b109cc.js"
         strategy="afterInteractive"
-      />      
+      />
+  
       {/* Structured Data */}
       <script
         type="application/ld+json"
